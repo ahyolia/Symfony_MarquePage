@@ -1,0 +1,131 @@
+{# filepath: templates/MarquePage/page.html.twig #}
+
+<head>
+    <title>Liste des marques-pages</title>
+
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        /* Style du tableau */
+        table {
+            width: 100%;
+            max-width: 1000px;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        thead {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        th {
+            text-align: left;
+            padding: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+
+        /* Alternance de couleurs pour les lignes */
+        tbody tr:nth-child(even) {
+            background-color: #f1f5f9;
+        }
+
+        /* Effet au survol */
+        tbody tr:hover {
+            background-color: #e0e7ff;
+            transition: background-color 0.2s ease;
+        }
+
+        /* Style des liens */
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Gestion de l'affichage vide */
+        p {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        /* Responsive : scroll horizontal sur petit écran */
+        @media (max-width: 600px) {
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+    }
+    </style>
+</head>
+<h1>Liste complètes des marques-pages</h1>
+
+{% if marquepages %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>URL</th>
+                <th>Date de création</th>
+                <th>Commentaire</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for page in marquepages %}
+                <tr>
+                    <td>{{ page.id }}</td>
+                    <td><a href="{{ page.URL }}" target="_blank">{{ page.URL }}</a></td>
+                    <td>{{ page.dateCreation|date('d/m/Y') }}</td>
+                    <td>{{ page.commentaire }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Aucune marque-page trouvée.</p>
+{% endif %}
