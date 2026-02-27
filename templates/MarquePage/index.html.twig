@@ -1,4 +1,4 @@
-{# filepath: templates/MarquePage/page.html.twig #}
+{# filepath: templates/MarquePage/index.html.twig #}
 
 <head>
     <title>Liste des marques-pages</title>
@@ -109,23 +109,19 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
                 <th>URL</th>
-                <th>Date de création</th>
                 <th>Commentaire</th>
             </tr>
         </thead>
         <tbody>
             {% for page in marquepages %}
                 <tr>
-                    <td>{{ page.id }}</td>
                     <td><a href="{{ page.URL }}" target="_blank">{{ page.URL }}</a></td>
-                    <td>{{ page.dateCreation|date('d/m/Y') }}</td>
                     <td>{{ page.commentaire }}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 {% else %}
-    <p>Aucune marque-page trouvée.</p>
+    <p>Aucun marque-page trouvé.</p>
 {% endif %}
