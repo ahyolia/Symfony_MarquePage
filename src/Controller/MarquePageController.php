@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class MarquePageController extends AbstractController
 {
-    #[Route('/MarquePage/page')]
+    #[Route("/MarquePage/page")]
     public function fct(EntityManagerInterface $entityManager): Response {
 
         $marquepages = $entityManager
@@ -20,6 +20,36 @@ class MarquePageController extends AbstractController
         return $this->render('MarquePage/page.html.twig', [
         'marquepages' => $marquepages,
     ]);
+    }
+
+    #[Route("/MarquePage/ajouter", name:  "marquepage_ajouter")]
+    public function ajouter(EntityManagerInterface $entityManager) : Response {
+       // Création du marque-page Symfony
+       $symfony = new MarquePage();
+       $symfony->setUrl("https://symfony.com/");
+       $symfony->setDateCreation(new \DateTime('2026-02-27'));
+       $symfony->setCommentaire("Page officielle de Symfony");
+       $entityManager->persist($symfony);
+
+       // Création du marque-page Qwant
+       $qwant = new MarquePage();
+       $qwant->setUrl("https://www.qwant.com/");
+       $qwant->setDateCreation(new \DateTime('2026-02-27'));
+       $qwant->setCommentaire("Moteur de recherche français");
+       $entityManager->persist($qwant);
+
+       // Création du marque-page LinkedIn
+       $linkedin = new MarquePage();
+       $linkedin->setUrl("https://www.linkedin.com/");
+       $linkedin->setDateCreation(new \DateTime('2026-02-27'));
+       $linkedin->setCommentaire("Réseau social professionnel");
+       $entityManager->persist($linkedin);
+       
+       // Sauvegarde en base de données
+       $entityManager->flush();
+
+       // Retour après avoir tout sauvegardé
+       return new Response("3 marque-pages sauvegardés avec succès !");
     }
 
 }
