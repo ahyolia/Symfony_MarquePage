@@ -130,6 +130,18 @@
                 <td>Commentaire</td>
                 <td>{{ marquepage.commentaire }}</td>
             </tr>
+            <tr>
+                <td>Mots Clés</td>
+                <td>
+                    {% if marquepage.motsCles is not empty %}
+                        {% for motCle in marquepage.motsCles %}
+                            {{ motCle.nom }}<br>
+                        {% endfor %}
+                    {% else %}
+                        Aucun mot-cle
+                    {% endif %}
+                </td>
+            </tr>
         </tbody>
     </table>
 {% else %}
