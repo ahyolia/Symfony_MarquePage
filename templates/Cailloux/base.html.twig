@@ -1,0 +1,10 @@
+{% extends 'layout/site.html.twig' %}
+
+{% block page_content %}
+    <section class="section-header">
+        <h2>{% block section_title %}Caillou{% endblock %}</h2>
+        <p>{% block section_subtitle %}Retrouvez la faune et la flore du Caillou.{% endblock %}</p>
+    </section>
+
+    {% block cailloux_content %}{% endblock %}
+{% endblock %}

@@ -1,149 +1,51 @@
-{# filepath: templates/MarquePage/details.html.twig #}
+{% extends 'MarquePage/base.html.twig' %}
 
-<head>
-    <title>Détail du marque-page</title>
+{% block title %}Marque-pages | Detail{% endblock %}
+{% block section_title %}Detail d'un marque-page{% endblock %}
+{% block section_subtitle %}Visualisez toutes les informations du lien.{% endblock %}
 
-    <style>
-        :root {
-            --primary-color: #4f46e5;
-            --bg-color: #f8fafc;
-            --text-color: #1e293b;
-            --border-color: #e2e8f0;
-            --white: #ffffff;
-        }
-
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        h1 {
-            color: var(--primary-color);
-            font-size: 2rem;
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
-
-        /* Style du tableau */
-        table {
-            width: 100%;
-            max-width: 1000px;
-            border-collapse: separate;
-            border-spacing: 0;
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        thead {
-            background-color: var(--primary-color);
-            color: var(--white);
-        }
-
-        th {
-            text-align: left;
-            padding: 16px;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-        }
-
-        td {
-            padding: 14px 16px;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 0.95rem;
-        }
-
-        /* Alternance de couleurs pour les lignes */
-        tbody tr:nth-child(even) {
-            background-color: #f1f5f9;
-        }
-
-        /* Effet au survol */
-        tbody tr:hover {
-            background-color: #e0e7ff;
-            transition: background-color 0.2s ease;
-        }
-
-        /* Style des liens */
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Gestion de l'affichage vide */
-        p {
-            background: var(--white);
-            padding: 20px;
-            border-radius: 8px;
-            color: #64748b;
-            font-style: italic;
-        }
-
-        /* Responsive : scroll horizontal sur petit écran */
-        @media (max-width: 600px) {
-            table {
-                display: block;
-                overflow-x: auto;
-            }
-    }
-    </style>
-</head>
-<h1>Détail d'un marque-page</h1>
-
-{% if marquepage %}
-    <table>
-        <thead>
-            <tr>
-                <th>Libellé</th>
-                <th>Valeur</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>ID</td>
-                <td>{{ marquepage.id }}</td>
-            </tr>
-            <tr>
-                <td>URL</td>
-                <td><a href="{{ marquepage.URL }}" target="_blank">{{ marquepage.URL }}</a></td>
-            </tr>
-            <tr>
-                <td>Date de création</td>
-                <td>{{ marquepage.dateCreation|date('d/m/Y') }}</td>
-            </tr>
-            <tr>
-                <td>Commentaire</td>
-                <td>{{ marquepage.commentaire }}</td>
-            </tr>
-            <tr>
-                <td>Mots Clés</td>
-                <td>
-                    {% if marquepage.motsCles is not empty %}
-                        {% for motCle in marquepage.motsCles %}
-                            {{ motCle.nom }}<br>
-                        {% endfor %}
-                    {% else %}
-                        Aucun mot-cle
-                    {% endif %}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-{% else %}
-    <p>Aucun marque-page trouvé.</p>
-{% endif %}
+{% block marque_page_content %}
+    {% if marquepage %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Libelle</th>
+                    <th>Valeur</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ID</td>
+                    <td>{{ marquepage.id }}</td>
+                </tr>
+                <tr>
+                    <td>URL</td>
+                    <td><a href="{{ marquepage.URL }}" target="_blank" rel="noopener noreferrer">{{ marquepage.URL }}</a></td>
+                </tr>
+                <tr>
+                    <td>Date de creation</td>
+                    <td>{{ marquepage.dateCreation|date('d/m/Y') }}</td>
+                </tr>
+                <tr>
+                    <td>Commentaire</td>
+                    <td>{{ marquepage.commentaire }}</td>
+                </tr>
+                <tr>
+                    <td>Mots cles</td>
+                    <td>
+                        {% if marquepage.motsCles is not empty %}
+                            {% for motCle in marquepage.motsCles %}
+                                {{ motCle.nom }}{% if not loop.last %}<br>{% endif %}
+                            {% endfor %}
+                        {% else %}
+                            Aucun mot-clé associe.
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><a href="{{ path('marquepage_index') }}">Retour vers l'index</a></p>
+    {% else %}
+        <p>Aucun marque-page trouve.</p>
+    {% endif %}
+{% endblock %}

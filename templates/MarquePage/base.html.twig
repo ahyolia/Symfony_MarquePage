@@ -1,0 +1,10 @@
+{% extends 'layout/site.html.twig' %}
+
+{% block page_content %}
+    <section class="section-header">
+        <h2>{% block section_title %}Marque-pages{% endblock %}</h2>
+        <p>{% block section_subtitle %}Retrouvez vos liens et leurs details en un clin d'oeil.{% endblock %}</p>
+    </section>
+
+    {% block marque_page_content %}{% endblock %}
+{% endblock %}

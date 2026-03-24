@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="site-shell">
+		<header class="site-header">
+			<div class="navbar">
+				<img src="{{ asset('images/symfony_logo.svg') }}" alt="Symfony Logo" class="navbar-logo">
+				<p class="navbar-user">Symfony dans tous ses états !</p>
+
+				<nav class="navbar-nav">
+					<a href="{{ path('marquepage_index') }}" class="nav-link">Bookmarks</a>
+					<a href="{{ path('livres_index') }}" class="nav-link">Livres</a>
+					<div class="nav-item-with-submenu">
+						<a href="{{ path('cailloux_index') }}" class="nav-link">Cailloux</a>
+						<div class="submenu" aria-label="Sous-menu Cailloux">
+							<a href="{{ path('cailloux_categorie', {'categorie': 'Faune'}) }}" class="submenu-link">Faune</a>
+							<a href="{{ path('cailloux_categorie', {'categorie': 'Flore'}) }}" class="submenu-link">Flore</a>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</header>
+
+		<main class="page-content">
+			<section class="home-hero">
+				<h1 class="hero-title">Bienvenue dans le guide de la Nouvelle-Calédonie</h1>
+				<p class="hero-subtitle">Explorez les richesses de nos bibliothèques et découvrez la faune et la flore incroyables du Caillou</p>
+			</section>
+
+			<section class="home-cards">
+				<div class="home-card">
+					<div class="home-card-icon">📚</div>
+					<h2>Livres</h2>
+					<p>Consultez notre collection complète de livres pour approfondir vos connaissances.</p>
+					<a href="{{ path('livres_index') }}" class="home-card-link">Voir les livres →</a>
+				</div>
+
+				<div class="home-card">
+					<div class="home-card-icon">🔖</div>
+					<h2>Bookmarks</h2>
+					<p>Retrouvez tous vos liens favoris et ressources en ligne en un seul endroit.</p>
+					<a href="{{ path('marquepage_index') }}" class="home-card-link">Voir les bookmarks →</a>
+				</div>
+
+				<div class="home-card">
+					<div class="home-card-icon">🦗</div>
+					<h2>La Faune</h2>
+					<p>Découvrez les espèces animales endémiques et fascinantes de Nouvelle-Calédonie.</p>
+					<a href="{{ path('cailloux_categorie', {'categorie': 'Faune'}) }}" class="home-card-link">Explorer la faune →</a>
+				</div>
+
+				<div class="home-card">
+					<div class="home-card-icon">🌿</div>
+					<h2>La Flore</h2>
+					<p>Explorez la richesse de la flore calédonienne et ses plantes remarquables.</p>
+					<a href="{{ path('cailloux_categorie', {'categorie': 'Flore'}) }}" class="home-card-link">Explorer la flore →</a>
+				</div>
+			</section>
+		</main>
+
+		<footer class="site-footer">
+			<p>Crée par Camélia en 2026</p>
+		</footer>
+	</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="site-shell">
+		<header class="site-header">
+			<div class="navbar">
+				
+				<a href="{{ path('home') }}" class="navbar-logo-link">
+					<img src="{{ asset('images/symfony_logo.svg') }}" alt="Symfony Logo" class="navbar-logo">
+				</a>
+				<p class="navbar-user">Symfony dans tous ses états !</p>
+
+				<nav class="navbar-nav">
+					<a href="{{ path('marquepage_index') }}" class="nav-link">Bookmarks</a>
+					<a href="{{ path('livres_index') }}" class="nav-link">Livres</a>
+					<div class="nav-item-with-submenu">
+						<a href="{{ path('cailloux_index') }}" class="nav-link">Cailloux</a>
+						<div class="submenu" aria-label="Sous-menu Cailloux">
+							<a href="{{ path('cailloux_categorie', {'categorie': 'Faune'}) }}" class="submenu-link">Faune</a>
+							<a href="{{ path('cailloux_categorie', {'categorie': 'Flore'}) }}" class="submenu-link">Flore</a>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</header>
+
+		<main class="page-content">
+			{% block page_content %}{% endblock %}
+		</main>
+
+		<footer class="site-footer">
+			<p>Crée par Camélia en 2026</p>
+		</footer>
+	</div>
+{% endblock %}

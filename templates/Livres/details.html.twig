@@ -1,0 +1,39 @@
+{% extends 'Livres/base.html.twig' %}
+
+{% block title %}Livres | Detail{% endblock %}
+{% block section_title %}Detail d'un livre{% endblock %}
+{% block section_subtitle %}Consultez les informations completes du livre selectionne.{% endblock %}
+
+{% block livre_content %}
+    {% if livre %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Libelle</th>
+                    <th>Valeur</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ID</td>
+                    <td>{{ livre.id }}</td>
+                </tr>
+                <tr>
+                    <td>Titre</td>
+                    <td>{{ livre.titre }}</td>
+                </tr>
+                <tr>
+                    <td>Auteur</td>
+                    <td>{{ livre.auteur.prenom }} {{ livre.auteur.nom }}</td>
+                </tr>
+                <tr>
+                    <td>Annee</td>
+                    <td>{{ livre.annee|date('Y') }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><a href="{{ path('livres_index') }}">Retour vers la liste</a></p>
+    {% else %}
+        <p>Livre introuvable.</p>
+    {% endif %}
+{% endblock %}

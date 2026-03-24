@@ -1,0 +1,376 @@
+
+    :root {
+        --primary-color: #4f46e5;
+        --bg-color: #f8fafc;
+        --text-color: #1e293b;
+        --border-color: #e2e8f0;
+        --white: #ffffff;
+    }
+
+    body {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        margin: 0;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        color: var(--primary-color);
+        font-size: 2rem;
+        margin-bottom: 30px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .site-shell {
+        width: 100%;
+        max-width: 1000px;
+    }
+
+    .site-header {
+        width: 100%;
+        margin-bottom: 24px;
+    }
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        background: var(--white);
+        border-radius: 12px;
+        padding: 10px 16px;
+    }
+
+    .navbar-logo {
+        width: 38px;
+        height: 38px;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+
+    .navbar-logo-link {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .navbar-logo-link:hover {
+        text-decoration: none;
+    }
+
+    .navbar-user {
+        margin: 0;
+        font-style: normal;
+        color: var(--text-color);
+    }
+
+    .navbar-nav {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .nav-link {
+        font-weight: 600;
+    }
+
+    .nav-item-with-submenu {
+        position: relative;
+        display: inline-block;
+    }
+
+    .submenu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 140px;
+        background: var(--white);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+        padding: 8px;
+        z-index: 20;
+        margin-top: 4px;
+    }
+
+    .submenu-link {
+        display: block;
+        padding: 10px 12px;
+        border-radius: 8px;
+        white-space: nowrap;
+    }
+
+    .submenu-link:hover {
+        background-color: #eef2ff;
+        text-decoration: none;
+    }
+
+    .nav-item-with-submenu:hover .submenu,
+    .nav-item-with-submenu:focus-within .submenu {
+        display: block;
+    }
+
+    /* Style du tableau */
+    table {
+        width: 100%;
+        max-width: 1000px;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: var(--white);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    thead {
+        background-color: var(--primary-color);
+        color: var(--white);
+    }
+
+    th {
+        text-align: left;
+        padding: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+    }
+
+    td {
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 0.95rem;
+    }
+
+    /* Alternance de couleurs pour les lignes */
+    tbody tr:nth-child(even) {
+        background-color: #f1f5f9;
+    }
+
+    /* Effet au survol */
+    tbody tr:hover {
+        background-color: #e0e7ff;
+        transition: background-color 0.2s ease;
+    }
+
+    .marquepage-row {
+        cursor: pointer;
+    }
+
+    .marquepage-row:focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: -2px;
+    }
+
+    /* Style des liens */
+    a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* Gestion de l'affichage vide */
+    p {
+    
+        color: #64748b;
+        font-style: italic;
+        margin-bottom: 40px;
+    }
+
+    /* Page d'accueil */
+    .home-hero {
+        text-align: center;
+        margin-bottom: 50px;
+        padding: 40px 20px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 16px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+        color: #64748b;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .home-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        width: 100%;
+        max-width: 1000px;
+        margin-bottom: 40px;
+    }
+
+    .home-card {
+        background: var(--white);
+        border-radius: 12px;
+        padding: 32px 24px;
+        text-align: center;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .home-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .home-card-icon {
+        font-size: 3rem;
+        margin-bottom: 16px;
+    }
+
+    .home-card h2 {
+        margin: 0 0 12px 0;
+        font-size: 1.3rem;
+        color: var(--text-color);
+    }
+
+    .home-card p {
+        font-style: normal;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+
+    .home-card-link {
+        display: inline-block;
+        padding: 10px 20px;
+        background: var(--primary-color);
+        color: var(--white);
+        border-radius: 8px;
+        font-weight: 600;
+        transition: background 0.2s ease;
+    }
+
+    .home-card-link:hover {
+        background: #4338ca;
+        text-decoration: none;
+    }
+
+    /* Grille de cartes */
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+        width: 100%;
+        max-width: 1000px;
+    }
+
+    .card {
+        background: var(--white);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-image {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card-image-placeholder {
+        color: #a5b4fc;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .card-content {
+        padding: 16px;
+    }
+
+    .card-title {
+        margin: 0 0 8px 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+    .card-category {
+        margin: 0 0 12px 0;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .card-description {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #64748b;
+        line-height: 1.5;
+    }
+
+    /* Responsive : scroll horizontal sur petit écran */
+    @media (max-width: 600px) {
+        .navbar {
+            flex-wrap: wrap;
+        }
+
+        .navbar-nav {
+            width: 100%;
+            margin-left: 0;
+            justify-content: flex-end;
+        }
+
+        .nav-item-with-submenu {
+            display: block;
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+        }
+
+        .home-cards {
+            grid-template-columns: 1fr;
+        }
+
+        table {
+            display: block;
+            overflow-x: auto;
+        }
+
+        .cards-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+}

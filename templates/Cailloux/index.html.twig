@@ -1,0 +1,46 @@
+{% extends 'Cailloux/base.html.twig' %}
+
+{% block title %}Cailloux | Liste{% endblock %}
+{% block section_title %}
+    {% if categorie_active %}
+        Cailloux - {{ categorie_active }}
+    {% else %}
+        La faune et la flore du Caillou
+    {% endif %}
+{% endblock %}
+{% block section_subtitle %}
+    {% if categorie_active %}
+        Liste de la {{ categorie_active }} en Nouvelle-Calédonie.
+    {% else %}
+        Affiche toutes les espèces du Caillou.
+    {% endif %}
+{% endblock %}
+
+{% block cailloux_content %}
+    {% if cailloux %}
+        <div class="cards-grid">
+            {% for caillou in cailloux %}
+                <div class="card">
+                    <div class="card-image">
+                        {% if caillou.images %}
+                            <img src="{{ asset('images/cailloux/' ~ caillou.images) }}" alt="{{ caillou.titre }}" loading="lazy">
+                        {% else %}
+                            <div class="card-image-placeholder">Pas d'image</div>
+                        {% endif %}
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">{{ caillou.titre }}</h3>
+                        <p class="card-category">{{ caillou.categorie }}</p>
+                        <p class="card-description">{{ caillou.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        {% if categorie_active %}
+            <p>Aucun caillou trouve pour la categorie {{ categorie_active }}.</p>
+        {% else %}
+            <p>Aucun caillou trouve.</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}

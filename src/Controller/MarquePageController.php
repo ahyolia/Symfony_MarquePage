@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 
+
 #[Route("/MarquePage", name: "marquepage_")]
 class MarquePageController extends AbstractController
 {
