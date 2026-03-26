@@ -16,6 +16,26 @@ class AuteurRepository extends ServiceEntityRepository
         parent::__construct($registry, Auteur::class);
     }
 
+    /**
+     * Retourne les auteurs ayant ecrit strictement plus de $nombreMin livres.
+     *
+     * @return array<int, array{auteur: Auteur, totalLivres: string}>
+     */
+    public function findAuteursAvecPlusDeNLivres(int $nombreMin): array
+    {
+        $dql = 'SELECT a AS auteur, COUNT(l.id) AS totalLivres
+                FROM App\\Entity\\Auteur a
+                JOIN a.livres l
+                GROUP BY a.id
+                HAVING COUNT(l.id) > :nombreMin
+                ORDER BY totalLivres DESC, a.nom ASC';
+
+        return $this->getEntityManager()
+            ->createQuery($dql)
+            ->setParameter('nombreMin', $nombreMin)
+            ->getResult();
+    }
+
     //    /**
     //     * @return Auteur[] Returns an array of Auteur objects
     //     */

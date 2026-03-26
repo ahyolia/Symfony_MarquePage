@@ -170,6 +170,15 @@
         outline-offset: -2px;
     }
 
+    .livre-row {
+        cursor: pointer;
+    }
+
+    .livre-row:focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: -2px;
+    }
+
     /* Style des liens */
     a {
         color: var(--primary-color);

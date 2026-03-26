@@ -16,6 +16,39 @@ class LivresRepository extends ServiceEntityRepository
         parent::__construct($registry, Livres::class);
     }
 
+    /**
+     * Retourne les livres dont le titre commence par la lettre fournie.
+     *
+     * @return Livres[]
+     */
+    public function findByTitreInitiale(string $lettre): array
+    {
+        $lettre = mb_substr(trim($lettre), 0, 1);
+
+        if ($lettre === '') {
+            return [];
+        }
+
+        $dql = 'SELECT l FROM App\\Entity\\Livres l WHERE UPPER(l.titre) LIKE UPPER(:prefixe) ORDER BY l.titre ASC';
+
+        return $this->getEntityManager()
+            ->createQuery($dql)
+            ->setParameter('prefixe', $lettre . '%')
+            ->getResult();
+    }
+
+    /**
+     * Retourne le nombre total de livres en base.
+     */
+    public function countAllLivres(): int
+    {
+        $dql = 'SELECT COUNT(l.id) FROM App\\Entity\\Livres l';
+
+        return (int) $this->getEntityManager()
+            ->createQuery($dql)
+            ->getSingleScalarResult();
+    }
+
 //    /**
 //     * @return Livres[] Returns an array of Livres objects
 //     */

@@ -19,16 +19,21 @@
                     <td>{{ livre.id }}</td>
                 </tr>
                 <tr>
-                    <td>Titre</td>
-                    <td>{{ livre.titre }}</td>
-                </tr>
-                <tr>
                     <td>Auteur</td>
                     <td>{{ livre.auteur.prenom }} {{ livre.auteur.nom }}</td>
                 </tr>
                 <tr>
+                    <td>Titre</td>
+                    <td>{{ livre.titre }}</td>
+                </tr>
+                
+                <tr>
                     <td>Annee</td>
                     <td>{{ livre.annee|date('Y') }}</td>
+                </tr>
+                <tr>
+                    <td>Resume</td>
+                    <td>{{ livre.resume }}</td>
                 </tr>
             </tbody>
         </table>

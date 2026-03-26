@@ -36,24 +36,4 @@ class LivreController extends AbstractController
             'livre' => $livre,
         ]);
     }
-
-    #[Route("/ajouter", name: "ajouter")]
-    public function ajouter(EntityManagerInterface $entityManager) : Response {
-        // Creation d'un auteur puis d'un livre associe
-        $auteur = new Auteur();
-        $auteur->setNom("Dupont");
-        $auteur->setPrenom("Jean");
-
-        $symfony = new Livres();
-        $symfony->setTitre("Apprendre Symfony 6");
-        $symfony->setAnnee(new \DateTime('2025-01-01'));
-        $symfony->setResume("Un livre complet pour apprendre le framework Symfony 6.");
-        $symfony->setAuteur($auteur);
-
-        $entityManager->persist($auteur);
-        $entityManager->persist($symfony);
-        $entityManager->flush();
-
-        return new Response("Livre ajouté avec succès !");
-    }
 }
