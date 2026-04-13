@@ -1,0 +1,15 @@
+{% extends 'layout/site.html.twig' %}
+
+{% block page_content %}
+    <section class="section-header">
+        <h2>Modifier un auteur</h2>
+        <p>Mettez a jour les informations de l'auteur selectionne.</p>
+    </section>
+
+    <div class="form-card">
+        {{ form_start(mon_formulaire, {'attr': {'class': 'app-form'}}) }}
+            {{ form_errors(mon_formulaire) }}
+            {{ form_widget(mon_formulaire) }}
+        {{ form_end(mon_formulaire) }}
+    </div>
+{% endblock %}

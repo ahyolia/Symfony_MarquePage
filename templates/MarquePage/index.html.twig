@@ -5,6 +5,8 @@
 {% block section_subtitle %}Cliquez sur un marque-page pour ouvrir sa page de details.{% endblock %}
 
 {% block marque_page_content %}
+    <p><a href="{{ path('marquepage_ajout') }}">Ajouter un marque-page</a></p>
+
     {% if marquepages %}
         <table>
             <thead>

@@ -1,0 +1,10 @@
+{% extends 'layout/site.html.twig' %}
+
+{% block page_content %}
+    <section class="section-header">
+        <h2>Enregistrement reussi</h2>
+        <p>L'employe et son adresse ont ete enregistres.</p>
+    </section>
+
+    <p><a href="{{ path('employe_ajout') }}">Ajouter un autre employe</a></p>
+{% endblock %}

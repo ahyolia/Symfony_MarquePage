@@ -1,0 +1,14 @@
+{% extends 'MarquePage/base.html.twig' %}
+
+{% block title %}Marque-pages | Modifier{% endblock %}
+{% block section_title %}Modifier un marque-page{% endblock %}
+{% block section_subtitle %}Mettez a jour les informations du marque-page selectionne.{% endblock %}
+
+{% block marque_page_content %}
+    <div class="form-card">
+        {{ form_start(mon_formulaire, {'attr': {'class': 'app-form'}}) }}
+            {{ form_errors(mon_formulaire) }}
+            {{ form_widget(mon_formulaire) }}
+        {{ form_end(mon_formulaire) }}
+    </div>
+{% endblock %}

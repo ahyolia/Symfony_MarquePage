@@ -1,0 +1,14 @@
+{% extends 'Livres/base.html.twig' %}
+
+{% block title %}Livres | Ajout{% endblock %}
+{% block section_title %}Ajouter un livre{% endblock %}
+{% block section_subtitle %}Remplissez le formulaire pour enregistrer un nouveau livre.{% endblock %}
+
+{% block livre_content %}
+    <div class="form-card">
+	    {{ form_start(mon_formulaire, {'attr': {'class': 'app-form'}}) }}
+		    {{ form_errors(mon_formulaire) }}
+		    {{ form_widget(mon_formulaire) }}
+	    {{ form_end(mon_formulaire) }}
+    </div>
+{% endblock %}

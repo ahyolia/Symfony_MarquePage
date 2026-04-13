@@ -1,0 +1,14 @@
+{% extends 'MarquePage/base.html.twig' %}
+
+{% block title %}Marque-pages | Ajout{% endblock %}
+{% block section_title %}Ajouter un marque-page{% endblock %}
+{% block section_subtitle %}Renseignez le lien et ses mots-cles associes.{% endblock %}
+
+{% block marque_page_content %}
+    <div class="form-card">
+        {{ form_start(mon_formulaire, {'attr': {'class': 'app-form'}}) }}
+            {{ form_errors(mon_formulaire) }}
+            {{ form_widget(mon_formulaire) }}
+        {{ form_end(mon_formulaire) }}
+    </div>
+{% endblock %}

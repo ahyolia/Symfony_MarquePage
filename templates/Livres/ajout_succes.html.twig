@@ -1,0 +1,11 @@
+{% extends 'Livres/base.html.twig' %}
+
+{% block title %}Livres | Ajout reussi{% endblock %}
+{% block section_title %}Enregistrement reussi{% endblock %}
+{% block section_subtitle %}Le livre a bien ete ajouté en base de données.{% endblock %}
+
+{% block livre_content %}
+    <p>Votre livre a ete enregistré avec succès.</p>
+    <p><a href="{{ path('livres_ajout') }}">Ajouter un autre livre</a></p>
+    <p><a href="{{ path('livres_index') }}">Retour a la liste des livres</a></p>
+{% endblock %}

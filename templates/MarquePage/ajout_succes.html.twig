@@ -1,0 +1,10 @@
+{% extends 'MarquePage/base.html.twig' %}
+
+{% block title %}Marque-pages | Succes{% endblock %}
+{% block section_title %}Enregistrement reussi{% endblock %}
+{% block section_subtitle %}Le marque-page a ete enregistre avec succes.{% endblock %}
+
+{% block marque_page_content %}
+    <p><a href="{{ path('marquepage_ajout') }}">Ajouter un autre marque-page</a></p>
+    <p><a href="{{ path('marquepage_index') }}">Retour vers la liste</a></p>
+{% endblock %}

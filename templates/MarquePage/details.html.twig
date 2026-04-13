@@ -44,6 +44,7 @@
                 </tr>
             </tbody>
         </table>
+        <p><a href="{{ path('marquepage_modifier', {'id': marquepage.id}) }}">Modifier ce marque-page</a></p>
         <p><a href="{{ path('marquepage_index') }}">Retour vers l'index</a></p>
     {% else %}
         <p>Aucun marque-page trouve.</p>

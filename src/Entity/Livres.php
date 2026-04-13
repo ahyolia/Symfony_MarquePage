@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Entity;
-
 use App\Repository\LivresRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LivresRepository::class)]
 class Livres
@@ -15,6 +15,8 @@ class Livres
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le titre est obligatoire.')]
+    #[Assert\Length(min: 3, minMessage: 'Le titre doit contenir au moins {{ limit }} caracteres.')]
     private ?string $titre = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -22,9 +24,12 @@ class Livres
 
     #[ORM\ManyToOne(inversedBy: 'livres')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotNull(message: 'L\'auteur est obligatoire.')]
     private ?Auteur $auteur = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le resume est obligatoire.')]
+    #[Assert\Length(min: 10, minMessage: 'Le resume doit contenir au moins {{ limit }} caracteres.')]
     private ?string $resume = null;
 
     public function getId(): ?int

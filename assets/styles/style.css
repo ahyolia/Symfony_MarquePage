@@ -345,6 +345,187 @@
         line-height: 1.5;
     }
 
+    /* Formulaires */
+    .form-card {
+        width: 100%;
+        max-width: 760px;
+        margin: 0 auto 28px;
+        background: var(--white);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        box-shadow: 0 16px 32px -22px rgba(15, 23, 42, 0.45);
+        padding: 24px;
+    }
+
+    .app-form > div {
+        margin-bottom: 16px;
+    }
+
+    .app-form label {
+        display: inline-block;
+        margin-bottom: 6px;
+        color: #334155;
+        font-weight: 600;
+        font-style: normal;
+    }
+
+    .app-form input[type='text'],
+    .app-form input[type='email'],
+    .app-form input[type='url'],
+    .app-form input[type='number'],
+    .app-form input[type='date'],
+    .app-form select,
+    .app-form textarea {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 0.95rem;
+        color: var(--text-color);
+        background: #fff;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .app-form textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .app-form input:focus,
+    .app-form select:focus,
+    .app-form textarea:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
+        outline: 0;
+    }
+
+    .app-form input[type='checkbox'] {
+        transform: translateY(1px);
+        margin-right: 8px;
+    }
+
+    .app-form button,
+    .app-form input[type='submit'] {
+        border: 0;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #4f46e5, #4338ca);
+        color: #fff;
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        padding: 11px 16px;
+        cursor: pointer;
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .app-form button:hover,
+    .app-form input[type='submit']:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 18px -10px rgba(67, 56, 202, 0.9);
+    }
+
+    .app-form ul {
+        margin: 6px 0 0;
+        padding-left: 18px;
+        color: #b91c1c;
+        font-size: 0.86rem;
+        font-style: normal;
+    }
+
+    .nested-block {
+        margin-top: 20px;
+        padding-top: 18px;
+        border-top: 1px dashed #cbd5e1;
+    }
+
+    .nested-block h3 {
+        margin: 0 0 14px;
+        color: #0f172a;
+        font-size: 1.05rem;
+        font-weight: 700;
+    }
+
+    .form-grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .form-grid-2 .field-full {
+        grid-column: 1 / -1;
+    }
+
+    .tag-select-native-hidden {
+        display: none;
+    }
+
+    .tag-select {
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        background: #fff;
+        padding: 10px;
+    }
+
+    .tag-select-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 10px;
+        min-height: 26px;
+    }
+
+    .tag-select-empty {
+        color: #64748b;
+        font-size: 0.9rem;
+    }
+
+    .tag-chip {
+        border: 0;
+        border-radius: 999px;
+        padding: 5px 10px;
+        background: #e0e7ff;
+        color: #3730a3;
+        font-size: 0.83rem;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .tag-chip-remove {
+        font-weight: 700;
+        opacity: 0.8;
+    }
+
+    .tag-select-search {
+        margin-bottom: 10px;
+    }
+
+    .tag-select-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        max-height: 170px;
+        overflow: auto;
+        padding-right: 2px;
+    }
+
+    .tag-option {
+        border: 1px solid #cbd5e1;
+        border-radius: 999px;
+        padding: 6px 11px;
+        background: #fff;
+        color: #334155;
+        font-size: 0.84rem;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .tag-option.is-selected {
+        background: #4f46e5;
+        border-color: #4f46e5;
+        color: #fff;
+    }
+
     /* Responsive : scroll horizontal sur petit écran */
     @media (max-width: 600px) {
         .navbar {
@@ -381,5 +562,15 @@
         .cards-grid {
             grid-template-columns: 1fr;
             gap: 16px;
+        }
+
+        .form-card {
+            padding: 16px;
+            border-radius: 12px;
+        }
+
+        .form-grid-2 {
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
 }

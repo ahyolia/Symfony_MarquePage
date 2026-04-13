@@ -1,0 +1,32 @@
+{% extends 'layout/site.html.twig' %}
+
+{% block page_content %}
+    <section class="section-header">
+        <h2>Ajouter un employe</h2>
+        <p>Formulaire avec adresse imbriquee.</p>
+    </section>
+
+    <div class="form-card">
+        {{ form_start(mon_formulaire, {'attr': {'class': 'app-form'}}) }}
+            {{ form_errors(mon_formulaire) }}
+
+            <div class="form-grid-2">
+                {{ form_row(mon_formulaire.nom, {'row_attr': {'class': 'field-full'}}) }}
+                {{ form_row(mon_formulaire.prenom) }}
+                {{ form_row(mon_formulaire.email) }}
+            </div>
+
+            <div class="nested-block">
+                <h3>Adresse</h3>
+                <div class="form-grid-2">
+                    {{ form_row(mon_formulaire.adresse.rue, {'row_attr': {'class': 'field-full'}}) }}
+                    {{ form_row(mon_formulaire.adresse.codePostal) }}
+                    {{ form_row(mon_formulaire.adresse.ville) }}
+                    {{ form_row(mon_formulaire.adresse.pays, {'row_attr': {'class': 'field-full'}}) }}
+                </div>
+            </div>
+
+            {{ form_row(mon_formulaire.save) }}
+        {{ form_end(mon_formulaire) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'layout/site.html.twig' %}
+
+{% block page_content %}
+    <section class="section-header">
+        <h2>Enregistrement reussi</h2>
+        <p>L'auteur a bien ete enregistre en base de donnees.</p>
+    </section>
+
+    <p><a href="{{ path('auteur_ajout') }}">Ajouter un autre auteur</a></p>
+    <p><a href="{{ path('livres_index') }}">Retour a la liste des livres</a></p>
+{% endblock %}

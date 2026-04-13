@@ -5,6 +5,13 @@
 {% block section_subtitle %}Selectionnez un livre pour afficher sa page de details.{% endblock %}
 
 {% block livre_content %}
+    <p>
+        <a href="{{ path('livres_ajout') }}">Ajouter un livre</a>
+    </p>
+    <p>
+        <a href="{{ path('auteur_ajout') }}">Ajouter un auteur</a>
+    </p>
+
     {% if livres %}
         <table>
             <thead>

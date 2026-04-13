@@ -1,0 +1,14 @@
+{% extends 'Livres/base.html.twig' %}
+
+{% block title %}Livres | Modifier{% endblock %}
+{% block section_title %}Modifier un livre{% endblock %}
+{% block section_subtitle %}Mettez a jour le livre selectionne (auteur non modifiable ici).{% endblock %}
+
+{% block livre_content %}
+    <div class="form-card">
+        {{ form_start(mon_formulaire, {'attr': {'class': 'app-form'}}) }}
+            {{ form_errors(mon_formulaire) }}
+            {{ form_widget(mon_formulaire) }}
+        {{ form_end(mon_formulaire) }}
+    </div>
+{% endblock %}
