@@ -26,10 +26,10 @@
                     <tr class="livre-row"
                         tabindex="0"
                         role="link"
-                        onclick="window.location.href='{{ path('livres_details', {'id': livre.id}) }}'"
-                        onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); window.location.href='{{ path('livres_details', {'id': livre.id}) }}'; }">
+                        onclick="window.location.href='{{ path('livres_details', {'slug': livre.slug}) }}'"
+                        onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); window.location.href='{{ path('livres_details', {'slug': livre.slug}) }}'; }">
                         <td>{{ livre.titre }}</td>
-                        <td>{{ livre.auteur.prenom }} {{ livre.auteur.nom }}</td>
+                        <td><a href="{{ path('auteur_details', {'slug': livre.auteur.slug}) }}">{{ livre.auteur.prenom }} {{ livre.auteur.nom }}</a></td>
                         <td>{{ livre.annee|date('Y') }}</td>
                     </tr>
                 {% endfor %}

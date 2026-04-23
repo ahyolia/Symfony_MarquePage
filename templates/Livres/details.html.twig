@@ -22,7 +22,7 @@
                 </tr>
                 <tr>
                     <td>Auteur</td>
-                    <td>{{ livre.auteur.prenom }} {{ livre.auteur.nom }}</td>
+                    <td><a href="{{ path('auteur_details', {'slug': livre.auteur.slug}) }}">{{ livre.auteur.prenom }} {{ livre.auteur.nom }}</a></td>
                 </tr>
                 <tr>
                     <td>Titre</td>

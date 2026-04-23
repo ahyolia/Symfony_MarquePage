@@ -1,0 +1,10 @@
+{% extends 'layout/site.html.twig' %}
+
+{% block page_content %}
+    <section class="section-header">
+        <h2>{% block section_title %}Auteurs{% endblock %}</h2>
+        <p>{% block section_subtitle %}Consultez la liste des auteurs et leurs details.{% endblock %}</p>
+    </section>
+
+    {% block auteur_content %}{% endblock %}
+{% endblock %}

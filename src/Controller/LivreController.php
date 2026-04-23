@@ -23,13 +23,13 @@ class LivreController extends AbstractController
         ]);
     }
 
-    #[Route('/details/{id<\d+>}', name: 'details')]
-    public function details(int $id, LivresRepository $livresRepository): Response
+    #[Route('/details/{slug}', name: 'details')]
+    public function details(string $slug, LivresRepository $livresRepository): Response
     {
-        $livre = $livresRepository->find($id);
+        $livre = $livresRepository->findOneBy(['slug' => $slug]);
 
         if (!$livre) {
-            throw $this->createNotFoundException("Livre avec l'id $id non trouve");
+            throw $this->createNotFoundException(sprintf('Livre avec le slug "%s" non trouve.', $slug));
         }
 
         return $this->render('Livres/details.html.twig', [

@@ -1,0 +1,47 @@
+{% extends 'auteur/base.html.twig' %}
+
+{% block title %}Auteurs | Detail{% endblock %}
+{% block section_title %}Detail d'un auteur{% endblock %}
+{% block section_subtitle %}Consultez les informations completes de l'auteur selectionne.{% endblock %}
+
+{% block auteur_content %}
+    {% if auteur %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Libelle</th>
+                    <th>Valeur</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ID</td>
+                    <td>{{ auteur.id }}</td>
+                </tr>
+                <tr>
+                    <td>Prenom</td>
+                    <td>{{ auteur.prenom }}</td>
+                </tr>
+                <tr>
+                    <td>Nom</td>
+                    <td>{{ auteur.nom }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Livres de cet auteur</h3>
+        {% if auteur.livres|length > 0 %}
+            <ul>
+                {% for livre in auteur.livres %}
+                    <li><a href="{{ path('livres_details', {'slug': livre.slug}) }}">{{ livre.titre }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun livre associe.</p>
+        {% endif %}
+
+        <p><a href="{{ path('auteur_index') }}">Retour vers la liste</a></p>
+    {% else %}
+        <p>Auteur introuvable.</p>
+    {% endif %}
+{% endblock %}

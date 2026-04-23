@@ -1,0 +1,38 @@
+{% extends 'auteur/base.html.twig' %}
+
+{% block title %}Auteurs | Liste{% endblock %}
+{% block section_title %}Liste complete des auteurs{% endblock %}
+{% block section_subtitle %}Selectionnez un auteur pour afficher sa page de details.{% endblock %}
+
+{% block auteur_content %}
+    <p>
+        <a href="{{ path('auteur_ajout') }}">Ajouter un auteur</a>
+    </p>
+
+    {% if auteurs %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Prenom</th>
+                    <th>Nom</th>
+                    <th>Nombre de livres</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for auteur in auteurs %}
+                    <tr class="livre-row"
+                        tabindex="0"
+                        role="link"
+                        onclick="window.location.href='{{ path('auteur_details', {'slug': auteur.slug}) }}'"
+                        onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); window.location.href='{{ path('auteur_details', {'slug': auteur.slug}) }}'; }">
+                        <td>{{ auteur.prenom }}</td>
+                        <td>{{ auteur.nom }}</td>
+                        <td>{{ auteur.livres|length }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucun auteur trouve.</p>
+    {% endif %}
+{% endblock %}
