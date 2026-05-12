@@ -1,83 +1,164 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Hôte : 127.0.0.1:3306
--- Généré le : mar. 24 fév. 2026 à 00:27
--- Version du serveur : 9.1.0
--- Version de PHP : 8.3.14
+-- SQL dump generated from project entities and fixtures
+-- Import this file into phpMyAdmin (choose or create database first)
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+SET FOREIGN_KEY_CHECKS = 0;
 
+DROP TABLE IF EXISTS marque_page_mots_cle;
+DROP TABLE IF EXISTS livres;
+DROP TABLE IF EXISTS marque_page;
+DROP TABLE IF EXISTS mots_cle;
+DROP TABLE IF EXISTS cailloux;
+DROP TABLE IF EXISTS employe;
+DROP TABLE IF EXISTS adresse;
+DROP TABLE IF EXISTS auteur;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+-- Table: auteur
+CREATE TABLE auteur (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(255) NOT NULL,
+  prenom VARCHAR(255) NOT NULL,
+  slug VARCHAR(191) NOT NULL UNIQUE,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Base de données : `avengers_aminhandoyo-camelia`
---
+-- Table: mots_cle
+CREATE TABLE mots_cle (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
+-- Table: marque_page
+CREATE TABLE marque_page (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  url VARCHAR(255) NOT NULL,
+  date_creation DATE NOT NULL,
+  commentaire VARCHAR(255) DEFAULT NULL,
+  mots_cles VARCHAR(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Structure de la table `doctrine_migration_versions`
---
+-- Join table: marque_page_mots_cle
+CREATE TABLE marque_page_mots_cle (
+  marque_page_id INT NOT NULL,
+  mots_cle_id INT NOT NULL,
+  PRIMARY KEY (marque_page_id, mots_cle_id),
+  INDEX IDX_MP (marque_page_id),
+  INDEX IDX_MC (mots_cle_id),
+  CONSTRAINT FK_MP FOREIGN KEY (marque_page_id) REFERENCES marque_page(id) ON DELETE CASCADE,
+  CONSTRAINT FK_MC FOREIGN KEY (mots_cle_id) REFERENCES mots_cle(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS `doctrine_migration_versions`;
-CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
-  `version` varchar(191) NOT NULL,
-  `executed_at` datetime DEFAULT NULL,
-  `execution_time` int DEFAULT NULL,
-  PRIMARY KEY (`version`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- Table: adresse
+CREATE TABLE adresse (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  rue VARCHAR(255) NOT NULL,
+  code_postal VARCHAR(20) NOT NULL,
+  ville VARCHAR(255) NOT NULL,
+  pays VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
+-- Table: employe
+CREATE TABLE employe (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(255) NOT NULL,
+  prenom VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  adresse_id INT NOT NULL UNIQUE,
+  CONSTRAINT FK_EMP_ADR FOREIGN KEY (adresse_id) REFERENCES adresse(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Structure de la table `marque_page`
---
+-- Table: cailloux
+CREATE TABLE cailloux (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  titre VARCHAR(255) NOT NULL,
+  images VARCHAR(255) DEFAULT NULL,
+  description VARCHAR(255) DEFAULT NULL,
+  categorie VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS `marque_page`;
-CREATE TABLE IF NOT EXISTS `marque_page` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_creation` date NOT NULL,
-  `commentaire` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- Table: livres
+CREATE TABLE livres (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  titre VARCHAR(255) NOT NULL,
+  annee DATE NOT NULL,
+  auteur_id INT NOT NULL,
+  resume VARCHAR(255) NOT NULL,
+  slug VARCHAR(191) NOT NULL UNIQUE,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT FK_LIV_AUTEUR FOREIGN KEY (auteur_id) REFERENCES auteur(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Déchargement des données de la table `marque_page`
---
+-- INSERT sample data from fixtures
 
-INSERT INTO `marque_page` (`id`, `url`, `date_creation`, `commentaire`) VALUES
-(1, 'https://www.nautiljon.com/', '2026-02-24', 'Portail multimédia pour les fans de l\'Asie de l\'Est et du Sud-Est.'),
-(2, 'https://www.pinterest.com/', '2026-02-24', 'Trouvez des inspirations et idées pratiques pour tous vos projets au quotidien sur Pinterest.\r\n');
+-- Auteurs
+INSERT INTO auteur (id, nom, prenom, slug, created_at, updated_at) VALUES
+(1, 'Levy', 'Marc', 'marc-levy', NOW(), NOW()),
+(2, 'Kafka', 'Franz', 'franz-kafka', NOW(), NOW()),
+(3, 'Dostoïevski', 'Fiodor', 'fiodor-dostoievski', NOW(), NOW());
 
--- --------------------------------------------------------
+-- Livres (annee set to Jan 1 of year)
+INSERT INTO livres (id, titre, annee, auteur_id, resume, slug, created_at, updated_at) VALUES
+(1, 'Ghost in Love', '2019-01-01', 1, 'Un roman joyeux et tendre sur les relations entre père et fils.', 'ghost-in-love', NOW(), NOW()),
+(2, 'La métamorphose', '1915-01-01', 2, 'Un homme se réveille un matin transformé en un insecte géant, explorant les thèmes de l’aliénation et de l’identité.', 'la-metamorphose', NOW(), NOW()),
+(3, 'Les nuits blanches', '1848-01-01', 3, 'Un jeune homme rêveur rencontre une femme mystérieuse lors de nuits blanches à Saint-Pétersbourg.', 'les-nuits-blanches', NOW(), NOW());
 
---
--- Structure de la table `messenger_messages`
---
+-- Cailloux
+INSERT INTO cailloux (id, titre, description, categorie, images) VALUES
+(1, 'Cagou', 'Le cagou est un oiseau endemique de Nouvelle-Caledonie, connu pour son plumage gris et son incapacite a voler.', 'Faune', 'cagou.jpg'),
+(2, 'Trico-raye', 'Le trico-raye est un oiseau endemique de Nouvelle-Caledonie, reconnaissable a son plumage raye noir et blanc.', 'Faune', 'trico_raye.jpg'),
+(3, 'Niaouli', 'Le niaouli est un arbre endemique de Nouvelle-Caledonie, apprecie pour son bois et ses proprietes medicinales.', 'Flore', 'niaouli.jpg'),
+(4, 'Hibiscus de Nouvelle-Caledonie', 'L\'hibiscus de Nouvelle-Caledonie est une plante endemique, celebre pour ses grandes fleurs colorees.', 'Flore', 'hibiscus.jpg');
 
-DROP TABLE IF EXISTS `messenger_messages`;
-CREATE TABLE IF NOT EXISTS `messenger_messages` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `body` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `headers` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue_name` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `available_at` datetime NOT NULL,
-  `delivered_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `IDX_75EA56E0FB7336F0E3BD61CE16BA31DBBF396750` (`queue_name`,`available_at`,`delivered_at`,`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-COMMIT;
+-- Mots cle (unique keywords from fixtures)
+INSERT INTO mots_cle (id, nom) VALUES
+(1, 'honkai star rail'),
+(2, 'site officiel'),
+(3, 'actualites'),
+(4, 'mise a jour'),
+(5, 'personnages'),
+(6, 'events'),
+(7, 'nautiljon'),
+(8, 'anime'),
+(9, 'manga'),
+(10, 'base de donnees'),
+(11, 'series'),
+(12, 'episodes'),
+(13, 'pinterest'),
+(14, 'fan art'),
+(15, 'captures ecran'),
+(16, 'inspirations visuelles'),
+(17, 'images'),
+(18, 'communaute'),
+(19, 'youtube'),
+(20, 'guides'),
+(21, 'tier list'),
+(22, 'videos'),
+(23, 'gameplay'),
+(24, 'astuces'),
+(25, 'linkedin'),
+(26, 'professionnels'),
+(27, 'industrie du jeu video'),
+(28, 'reseau'),
+(29, 'opportunites'),
+(30, 'veille');
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- MarquePage entries
+INSERT INTO marque_page (id, url, date_creation, commentaire, mots_cles) VALUES
+(1, 'https://hsr.hoyoverse.com/fr-fr/', '2026-05-01', 'Site officiel de Honkai Star Rail pour les actualités et informations sur le jeu.', NULL),
+(2, 'https://www.nautiljon.com', '2026-04-20', 'Nautiljon est une base de données complète pour les anime, manga et jeux vidéo, offrant des informations détaillées sur les personnages, les épisodes et les séries.', NULL),
+(3, 'https://www.pinterest.com', '2026-03-15', 'Pinterest est une plateforme de partage d\'images, idéale pour trouver des fan arts, des captures d\'écran et des inspirations visuelles liées à nos intérêts.', NULL),
+(4, 'https://www.youtube.com', '2026-01-10', 'YouTube est une plateforme de partage de vidéos.', NULL),
+(5, 'https://www.linkedin.com', '2025-12-01', 'LinkedIn peut être utilisé pour suivre les professionnels.', NULL);
+
+-- Associations marque_page <-> mots_cle (manuellement chosen to reflect fixtures)
+INSERT INTO marque_page_mots_cle (marque_page_id, mots_cle_id) VALUES
+(1, 1),(1,2),(1,3),(1,5),(1,6),
+(2, 7),(2,8),(2,9),(2,10),(2,11),(2,12),
+(3, 13),(3,14),(3,15),(3,16),(3,17),(3,18),
+(4, 19),(4,20),(4,21),(4,22),(4,23),(4,24),
+(5, 25),(5,26),(5,27),(5,28),(5,29),(5,30);
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- End of dump
